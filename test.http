@@ -1,0 +1,33 @@
+@host = http://localhost:5249
+
+### 1. Happy Path (200 OK)
+POST {{host}}/order
+Content-Type: application/json
+
+{
+  "drink": "latte"
+}
+
+### 2. Помилка валідації через Endpoint Filter (400 Bad Request)
+POST {{host}}/order
+Content-Type: application/json
+
+{
+  "drink": "matcha"
+}
+
+### 3. Кастомний IExceptionHandler (503 Service Unavailable)
+POST {{host}}/order
+Content-Type: application/json
+
+{
+  "drink": "espresso"
+}
+
+### 4. Стандартний виняток через AddProblemDetails (504 Gateway Timeout)
+POST {{host}}/order
+Content-Type: application/json
+
+{
+  "drink": "cappuccino"
+}
